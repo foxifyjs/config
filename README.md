@@ -1,5 +1,8 @@
 # Foxify Config
 
+[![Test](https://github.com/foxifyjs/config/actions/workflows/test.yml/badge.svg)](https://github.com/foxifyjs/config/actions/workflows/test.yml)
+[![CodeCov](https://codecov.io/gh/foxifyjs/config/branch/main/graph/badge.svg?token=IMQe6xV4QC)](https://codecov.io/gh/foxifyjs/config)
+
 Foxify Configuration
 
 ## Table of Content
