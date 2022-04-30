@@ -1,0 +1,63 @@
+{
+  "name": "@foxify/config",
+  "version": "1.0.0",
+  "description": "Foxify Configuration",
+  "license": "MIT",
+  "author": "Ardalan Amini <ardalanamini22@gmail.com> (https://ardalanamini.com)",
+  "homepage": "https://github.com/foxifyjs/config#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxifyjs/config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/foxifyjs/config/issues"
+  },
+  "keywords": [
+    "node.js",
+    "foxify",
+    "framework",
+    "config"
+  ],
+  "main": ".build/cjs/index.js",
+  "types": ".build/types/index.d.ts",
+  "imports": {
+    "#src/config": {
+      "import": "./.build/esm/config-esm.js",
+      "default": "./.build/cjs/config-cjs.js"
+    },
+    "#src/*": {
+      "import": "./.build/esm/*.js",
+      "default": "./.build/cjs/*.js"
+    }
+  },
+  "exports": {
+    ".": {
+      "import": "./.build/esm/index.js",
+      "default": "./.build/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "npm run build -- --watch",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:hybrid": "scripts/pre-build.sh && npm run build && npm run build:esm && scripts/post-build.sh",
+    "lint": "eslint src __tests__",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "node --expose-gc node_modules/jest/bin/jest",
+    "test:coverage": "npm test -- --coverage",
+    "test:ci": "npm run test:coverage -- --ci --runInBand --verbose --logHeapUsage --no-cache"
+  },
+  "dependencies": {
+    "joi": "^17.6.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.4"
+  }
+}
