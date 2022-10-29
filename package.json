@@ -32,6 +32,12 @@
     "test:coverage": "npm test -- --coverage",
     "test:ci": "npm run test:coverage -- --ci --verbose --no-cache"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=16"
+  },
   "main": ".build/cjs/index.js",
   "module": ".build/esm/index.js",
   "types": ".build/types/index.d.ts",
