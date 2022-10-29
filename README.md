@@ -8,6 +8,9 @@ Foxify Configuration
 ## Table of Content
 
 - [Installation](#installation)
+  - [NPM](#npm)
+  - [PNPM](#pnpm)
+  - [Yarn](#yarn)
 - [Usage](#usage)
   - [ECMAScript](#ecmascript)
   - [CommonJS](#commonjs)
@@ -17,8 +20,25 @@ Foxify Configuration
 
 ## Installation
 
+> In case of using GitHub package registry,
+> the package name will be `@foxifyjs/config`.
+
+### NPM
+
 ```shell
 npm i @foxify/config
+```
+
+### PNPM
+
+```shell
+pnpm add @foxify/config
+```
+
+### Yarn
+
+```shell
+yarn add @foxify/config
 ```
 
 ## Usage

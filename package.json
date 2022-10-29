@@ -23,20 +23,21 @@
   ],
   "scripts": {
     "build": "tsc",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "pnpm build --watch",
     "build:esm": "tsc -p tsconfig.esm.json",
-    "build:hybrid": "scripts/pre-build.sh && npm run build && npm run build:esm && scripts/post-build.sh",
+    "build:hybrid": "scripts/pre-build.sh && pnpm build && pnpm build:esm && scripts/post-build.sh",
     "lint": "eslint src __tests__",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "pnpm lint -- --fix",
     "test": "node --no-compilation-cache --expose-gc node_modules/jest/bin/jest --logHeapUsage",
-    "test:coverage": "npm test -- --coverage",
-    "test:ci": "npm run test:coverage -- --ci --verbose --no-cache"
+    "test:coverage": "pnpm test -- --coverage",
+    "test:ci": "pnpm test:coverage -- --ci --verbose --no-cache"
   },
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=16",
+    "pnpm": ">=7"
   },
   "main": ".build/cjs/index.js",
   "module": ".build/esm/index.js",
