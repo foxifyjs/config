@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./.build/.cjs.tsbuildinfo",
+    "module": "CommonJS",
+    "moduleResolution": "Node16",
+    "outDir": "./.build/cjs",
+    "paths": {
+      "#src/config": ["./src/config.cjs.ts"],
+      "#src/*": ["./src/*"],
+      "@foxify/config": ["./src/index.ts"],
+      "@foxify/config/*": ["./src/*"]
+    }
+  },
+  "exclude": ["src/config.esm.ts"]
+}

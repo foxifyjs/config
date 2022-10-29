@@ -81,7 +81,7 @@ module.exports = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
-    "^#src/config": "<rootDir>/src/config-cjs.ts",
+    "^#src/config": "<rootDir>/src/config.cjs.ts",
     "^#src/(.*)$": "<rootDir>/src/$1",
     "^@foxify/config$": "<rootDir>/src/index.ts",
     "^@foxify/config/(.*)$": "<rootDir>/src/$1",
@@ -181,6 +181,7 @@ module.exports = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
+        tsconfig: "tsconfig.jest.json",
         isolatedModules: true,
       },
     ],
