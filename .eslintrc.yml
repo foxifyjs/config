@@ -2,21 +2,12 @@ env:
   es2021: true
   node: true
 extends:
-  - eslint:recommended
-  - plugin:@typescript-eslint/recommended
-parser: '@typescript-eslint/parser'
+  - noir/all
 parserOptions:
+  project: ./tsconfig.eslint.json
   ecmaVersion: latest
   sourceType: module
-plugins:
-  - '@typescript-eslint'
 rules:
-  indent:
-    - error
-    - 2
-  quotes:
-    - error
-    - double
-  semi:
-    - error
-    - always
+  multiline-comment-style: off
+  import/no-relative-parent-imports: off
+  import/extensions: off

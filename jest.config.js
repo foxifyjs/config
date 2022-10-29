@@ -60,7 +60,9 @@ module.exports = {
   // A set of global variables that need to be available in all test environments
   // globals: {},
 
-  // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
+  // The maximum amount of workers used to run your tests. Can be specified as % or a number.
+  // E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number.
+  // maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
@@ -78,16 +80,18 @@ module.exports = {
   //   "node"
   // ],
 
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
+  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources
+  // with a single module
   moduleNameMapper: {
-    "^(\\.{1,2}/.*)\\.js$": "$1",
-    "^#src/config": "<rootDir>/src/config.cjs.ts",
-    "^#src/(.*)$": "<rootDir>/src/$1",
-    "^@foxify/config$": "<rootDir>/src/index.ts",
+    "^(\\.{1,2}/.*)\\.js$" : "$1",
+    "^#src/config"         : "<rootDir>/src/config.cjs.ts",
+    "^#src/(.*)$"          : "<rootDir>/src/$1",
+    "^@foxify/config$"     : "<rootDir>/src/index.ts",
     "^@foxify/config/(.*)$": "<rootDir>/src/$1",
   },
 
-  // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
+  // An array of regexp pattern strings,
+  // matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
   // Activates notifications for test results
@@ -111,7 +115,7 @@ module.exports = {
   // Reset the module registry before running each individual test
   // resetModules: false,
 
-  // A path to a custom resolver
+  // A path to a custom resolver.
   // resolver: undefined,
 
   // Automatically restore mock state and implementation before every test
@@ -152,6 +156,7 @@ module.exports = {
   // The glob patterns Jest uses to detect test files
   testMatch: [
     "<rootDir>/__tests__/**/*\\.test\\.ts",
+
     // "**/__tests__/**/*.[jt]s?(x)",
     // "**/?(*.)+(spec|test).[tj]s?(x)"
   ],
@@ -181,19 +186,21 @@ module.exports = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: "tsconfig.jest.json",
+        tsconfig       : "tsconfig.jest.json",
         isolatedModules: true,
       },
     ],
   },
 
-  // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
+  // An array of regexp pattern strings that are matched against all source file paths,
+  // matched files will skip transformation
   // transformIgnorePatterns: [
   //   "/node_modules/",
   //   "\\.pnp\\.[^\\/]+$"
   // ],
 
-  // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
+  // An array of regexp pattern strings that are matched against all modules before the module loader will automatically
+  // return a mock for them
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run

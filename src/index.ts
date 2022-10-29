@@ -1,3 +1,5 @@
+import os from "os";
+import Joi from "joi";
 import content from "#src/config";
 import {
   ConfigI,
@@ -11,38 +13,47 @@ import {
   ServerConfigI,
   SubdomainConfigI,
 } from "#src/constants";
-import Joi from "joi";
-import os from "os";
 
 /* ------------------------- Validate the config data ------------------------- */
 
 const { value: config, error } = Joi
   .object<ConfigI>()
   .keys({
-    env: Joi.string().valid(...Object.values(ENV)).default(DEFAULT.env),
+    env: Joi.string().valid(...Object.values(ENV))
+      .default(DEFAULT.env),
     xPoweredBy: Joi.boolean().default(DEFAULT.xPoweredBy),
-    workers: Joi.number().integer().min(1).max(os.cpus().length).default(DEFAULT.workers),
-    etag: Joi.function(),
+    workers   : Joi.number().integer()
+      .min(1)
+      .max(os.cpus().length)
+      .default(DEFAULT.workers),
+    etag  : Joi.function(),
     server: Joi
       .object<ServerConfigI>()
       .keys({
-        protocol: Joi.string().valid(...Object.values(SERVER_PROTOCOL)).default(DEFAULT.server.protocol),
-        hostname: Joi.string().hostname().default(DEFAULT.server.hostname),
-        port: Joi.number().port().default(DEFAULT.server.port),
+        protocol: Joi.string().valid(...Object.values(SERVER_PROTOCOL))
+          .default(DEFAULT.server.protocol),
+        hostname: Joi.string().hostname()
+          .default(DEFAULT.server.hostname),
+        port: Joi.number().port()
+          .default(DEFAULT.server.port),
       })
       .default(DEFAULT.server),
     subdomain: Joi
       .object<SubdomainConfigI>()
       .keys({
-        offset: Joi.number().integer().min(0).default(DEFAULT.subdomain.offset),
+        offset: Joi.number().integer()
+          .min(0)
+          .default(DEFAULT.subdomain.offset),
       })
       .default(DEFAULT.subdomain),
     json: Joi
       .object<JsonConfigI>()
       .keys({
-        escape: Joi.boolean().default(DEFAULT.json.escape),
+        escape  : Joi.boolean().default(DEFAULT.json.escape),
         replacer: Joi.function(),
-        spaces: Joi.number().integer().min(0).default(DEFAULT.json.spaces),
+        spaces  : Joi.number().integer()
+          .min(0)
+          .default(DEFAULT.json.spaces),
       })
       .default(DEFAULT.json),
     jsonp: Joi
@@ -74,6 +85,8 @@ if (error != null) throw error;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function freeze<T extends Record<string, any>>(obj: T): T {
   for (const key in obj) {
+    if (!Object.hasOwn(obj, key)) continue;
+
     const value = obj[key];
 
     if (typeof value !== "object" || value == null) continue;
@@ -84,7 +97,7 @@ function freeze<T extends Record<string, any>>(obj: T): T {
   return Object.freeze(obj);
 }
 
-const CONFIG: ConfigI = config?.env === ENV.TEST ? config : freeze(config);
+const CONFIG: ConfigI = config.env === ENV.TEST ? config : freeze(config);
 
 /* ------------------------- Exports ------------------------- */
 

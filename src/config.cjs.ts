@@ -5,9 +5,10 @@ import { CONFIG_FILEPATH, ConfigI } from "#src/constants";
 let resolved;
 
 try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   resolved = require(CONFIG_FILEPATH);
 
+  // eslint-disable-next-line no-underscore-dangle
   resolved = resolved?.__esModule ? resolved : { default: resolved };
 } catch (e) {
   resolved = {};
