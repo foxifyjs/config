@@ -45,47 +45,6 @@ jobs:
             ${{ steps.changelog.outputs.changelog }}
           prerelease: ${{ steps.changelog.outputs.prerelease }}
 
-  publish-npm:
-    name: Publish to NPM
-
-    needs:
-      - release
-
-    environment:
-      name: npm
-      url: https://www.npmjs.com/package/@foxify/config
-
-    concurrency:
-      group: ${{ github.workflow }}-npm-${{ github.ref_name }}
-      cancel-in-progress: true
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
-        with:
-          cache: pnpm
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://registry.npmjs.org/
-
-      - name: Install dependencies
-        run: pnpm i
-
-      - run: pnpm build:hybrid
-
-      - name: Publish the package
-        run: pnpm publish --tag ${{ needs.release.outputs.release-id }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
   publish-gpr:
     name: Publish to GitHub Packages
 
@@ -127,9 +86,46 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - run: pnpm build:hybrid
-
       - name: Publish the package
         run: pnpm publish --tag ${{ needs.release.outputs.release-id }}
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
+
+  publish-npm:
+    name: Publish to NPM
+
+    needs:
+      - release
+
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/@foxify/config
+
+    concurrency:
+      group: ${{ github.workflow }}-npm-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Publish the package
+        run: pnpm publish --tag ${{ needs.release.outputs.release-id }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
