@@ -27,10 +27,10 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:hybrid": "scripts/pre-build.sh && pnpm build && pnpm build:esm && scripts/post-build.sh",
     "lint": "eslint src __tests__",
-    "lint:fix": "pnpm lint -- --fix",
+    "lint:fix": "pnpm lint --fix",
     "test": "node --no-compilation-cache --expose-gc node_modules/jest/bin/jest --logHeapUsage",
     "test:coverage": "pnpm test -- --coverage",
-    "test:ci": "pnpm test:coverage -- --ci --verbose --no-cache"
+    "test:ci": "pnpm test:coverage --ci --verbose --no-cache"
   },
   "publishConfig": {
     "access": "public"
