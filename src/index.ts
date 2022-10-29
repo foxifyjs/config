@@ -1,16 +1,16 @@
+import content from "#src/config";
 import {
+  ConfigI,
   DEFAULT,
   ENV,
-  SERVER_PROTOCOL,
-  ConfigI,
-  ServerConfigI,
-  SubdomainConfigI,
   JsonConfigI,
   JsonpConfigI,
-  QueryConfigI,
   ProxyConfigI,
+  QueryConfigI,
+  SERVER_PROTOCOL,
+  ServerConfigI,
+  SubdomainConfigI,
 } from "#src/constants";
-import content from "#src/config";
 import Joi from "joi";
 import os from "os";
 
@@ -84,8 +84,7 @@ function freeze<T extends Record<string, any>>(obj: T): T {
   return Object.freeze(obj);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const CONFIG = freeze(config!);
+const CONFIG: ConfigI = config?.env === ENV.TEST ? config : freeze(config);
 
 /* ------------------------- Exports ------------------------- */
 
